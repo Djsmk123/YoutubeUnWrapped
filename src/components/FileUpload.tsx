@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Upload } from 'lucide-react';
 
+
 interface FileUploadProps {
   onDataProcess: (dataChunk: any[]) => void; // Called for each chunk of parsed data
 }
@@ -8,7 +9,6 @@ interface FileUploadProps {
 export function FileUpload({ onDataProcess }: FileUploadProps) {
   const [loading, setLoading] = useState(false);
 
-  const CHUNK_SIZE = 1000000; // Process 1000 items per chunk
 
   const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -39,12 +39,7 @@ export function FileUpload({ onDataProcess }: FileUploadProps) {
           throw new Error('Invalid JSON format: Expected an array at the top level.');
         }
 
-        // Process the array in chunks
-        const totalChunks = Math.ceil(jsonArray.length / CHUNK_SIZE);
-        for (let i = 0; i < totalChunks; i++) {
-          const chunk = jsonArray.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE);
-          onDataProcess(chunk); // Pass each chunk to the parent component
-        }
+        onDataProcess(jsonArray);
 
         alert(`Successfully processed ${jsonArray.length} records.`);
       } catch (error: any) {

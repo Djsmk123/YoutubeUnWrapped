@@ -4,6 +4,7 @@ export interface YouTubeVideo {
   channelTitle: string;
   channelUrl: string;
   time: string;
+  noOfTimesPlayed: number;
 }
 
 export interface ChannelStats {
@@ -11,16 +12,19 @@ export interface ChannelStats {
   channelUrl: string;
   videoCount: number;
   lastWatched: string;
+  thumbnailUrl: string | null;
 }
 
 export interface UnwrappedStats {
   topChannels: ChannelStats[];
-  mostWatchedVideo: YouTubeVideo | null;
+  mostWatchedVideo: Array<YouTubeVideo> | [];
   mostRecentVideo: YouTubeVideo | null;
   totalVideos: number;
   uniqueChannels: number;
   watchTimeByMonth: { [key: string]: number };
+
 }
+
 
 export interface RawYouTubeData {
   header: string;
