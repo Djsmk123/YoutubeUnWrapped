@@ -16,7 +16,7 @@ export function Footer() {
           SmkWinner
         </a>
         <a
-          href="https://github.com/stackblitz/web-ext-starter"
+          href="https://github.com/Djsmk123/YoutubeUnWrapped"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-600 hover:text-gray-700"
